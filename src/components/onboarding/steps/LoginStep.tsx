@@ -3,11 +3,36 @@ import OnboardingChecklist, { allChecked } from "../OnboardingChecklist";
 import StepActionButton from "../StepActionButton";
 
 const items = [
-  { id: "login", label: "Go to the login page", description: "Open the platform and navigate to login" },
-  { id: "otp", label: "Request OTP code", description: "Enter your email to receive a one-time code" },
-  { id: "inbox", label: "Check your inbox", description: "Find the email with your verification code" },
-  { id: "copy", label: "Copy the code", description: "Copy the 6-digit code from the email" },
-  { id: "enter", label: "Enter the code & log in", description: "Paste the code to complete login" },
+  {
+    id: "login",
+    label: "Go to the login page",
+    description: "Open the platform and navigate to login",
+    image: "https://assets.cdn.filesafe.space/ssV8rkOt67ZLuYMc9myd/media/663cd7c68794422d21a6efad.png",
+  },
+  {
+    id: "otp",
+    label: "Request OTP code",
+    description: "Enter your email to receive a one-time code",
+    image: "https://assets.cdn.filesafe.space/ssV8rkOt67ZLuYMc9myd/media/663cd8201a574153227dc622.png",
+  },
+  {
+    id: "inbox",
+    label: "Check your inbox",
+    description: "Find the email with your verification code",
+    image: "https://assets.cdn.filesafe.space/ssV8rkOt67ZLuYMc9myd/media/663cd9748794427f45a6f058.png",
+  },
+  {
+    id: "copy",
+    label: "Copy the code",
+    description: "Copy the 6-digit code from the email",
+    image: "https://assets.cdn.filesafe.space/ssV8rkOt67ZLuYMc9myd/media/663cda1887944221b4a6f096.png",
+  },
+  {
+    id: "enter",
+    label: "Enter the code & log in",
+    description: "Paste the code to complete login",
+    image: "https://assets.cdn.filesafe.space/ssV8rkOt67ZLuYMc9myd/media/663cda9c8794427661a6f0af.png",
+  },
 ];
 
 export default function LoginStep() {

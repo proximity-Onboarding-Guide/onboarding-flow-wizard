@@ -1,11 +1,13 @@
 import { Check } from "lucide-react";
 import { useOnboarding } from "@/context/OnboardingContext";
 import { cn } from "@/lib/utils";
+import ZoomableImage from "./ZoomableImage";
 
-interface ChecklistItem {
+export interface ChecklistItem {
   id: string;
   label: string;
   description?: string;
+  image?: string;
 }
 
 interface OnboardingChecklistProps {
@@ -20,48 +22,54 @@ export default function OnboardingChecklist({
   const { checkedItems, toggleCheckItem } = useOnboarding();
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-4">
       {items.map((item, idx) => {
         const key = `${stepPrefix}-${item.id}`;
         const checked = !!checkedItems[key];
         return (
-          <button
-            key={key}
-            onClick={() => toggleCheckItem(key)}
-            className={cn(
-              "w-full flex items-start gap-3 p-3 rounded-lg border transition-all duration-200 text-left group",
-              checked
-                ? "bg-success/10 border-success/30"
-                : "bg-card border-border hover:border-primary/30 hover:bg-accent/50"
-            )}
-            style={{ animationDelay: `${idx * 50}ms` }}
-          >
-            <div
+          <div key={key} className="space-y-2">
+            <button
+              onClick={() => toggleCheckItem(key)}
               className={cn(
-                "mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-all",
+                "w-full flex items-start gap-3 p-3 rounded-lg border transition-all duration-200 text-left group",
                 checked
-                  ? "bg-success border-success checklist-check"
-                  : "border-muted-foreground/30 group-hover:border-primary/50"
+                  ? "bg-success/10 border-success/30"
+                  : "bg-card border-border hover:border-primary/30 hover:bg-accent/50"
               )}
+              style={{ animationDelay: `${idx * 50}ms` }}
             >
-              {checked && <Check className="w-3 h-3 text-success-foreground" />}
-            </div>
-            <div>
-              <p
+              <div
                 className={cn(
-                  "text-sm font-medium transition-colors",
-                  checked ? "text-muted-foreground line-through" : "text-foreground"
+                  "mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-all",
+                  checked
+                    ? "bg-success border-success checklist-check"
+                    : "border-muted-foreground/30 group-hover:border-primary/50"
                 )}
               >
-                {item.label}
-              </p>
-              {item.description && (
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  {item.description}
+                {checked && <Check className="w-3 h-3 text-success-foreground" />}
+              </div>
+              <div>
+                <p
+                  className={cn(
+                    "text-sm font-medium transition-colors",
+                    checked ? "text-muted-foreground line-through" : "text-foreground"
+                  )}
+                >
+                  {item.label}
                 </p>
-              )}
-            </div>
-          </button>
+                {item.description && (
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    {item.description}
+                  </p>
+                )}
+              </div>
+            </button>
+            {item.image && (
+              <div className="ml-8">
+                <ZoomableImage src={item.image} alt={item.label} />
+              </div>
+            )}
+          </div>
         );
       })}
     </div>
